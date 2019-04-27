@@ -1,0 +1,9 @@
+These are my notes and assumptions for the project:
+
+1. I am using JDK 11
+2. I am using Gradle 5.4.1, and not the wrapper for gradle, to adhere to the instructions
+3. I assume that expressions should be evaluated left to right, as the math in the example seems to imply
+4. I assume that the you can't reference variables ahead of time as I could imagine you could do in a sane way. i.e:
+            a = b + 1;
+            b = 4;
+            result = a + b;
