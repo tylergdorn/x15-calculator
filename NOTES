@@ -7,3 +7,4 @@ These are my notes and assumptions for the project:
             a = b + 1;
             b = 4;
             result = a + b;
+5. I assume that the there are no extra lines, i.e. that the result should always be the last line of the "program" and the first line should be the first statement(or result).
