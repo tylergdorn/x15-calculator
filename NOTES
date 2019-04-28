@@ -8,3 +8,5 @@ These are my notes and assumptions for the project:
             b = 4;
             result = a + b;
 5. I assume that the there are no extra lines, i.e. that the result should always be the last line of the "program" and the first line should be the first statement(or result).
+6. I assume that the regex \(1-9)(0-9)+\ should actually be \(1-9)(0-9)*\, as the former means you could not have one number values, which contradicts the example.
+
