@@ -1,0 +1,7 @@
+a = 1;
+b = 2;
+c = a + b;
+result = c + b;
+result = result + c;
+d = result - c + result;
+result = d;

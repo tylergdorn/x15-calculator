@@ -4,9 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -18,11 +15,20 @@ public class TestsFolderTests {
     private String expectedPath;
     private String inputPath;
 
+    /**
+     * Constructor for the test
+     * @param inputPath the path to the input file
+     * @param expectedPath the path to the file which contains the expected output
+     */
     public TestsFolderTests(String inputPath, String expectedPath){
         this.expectedPath = expectedPath;
         this.inputPath = inputPath;
     }
 
+    /**
+     * testsFolderFinder finds all folders and puts their path into a string array, which JUnit then passes to our test runner
+     * @return a list of arrays of strings, representing the inputs for our tests
+     */
     @Parameterized.Parameters(name = "{index}: runTest({0})={1}")
     public static Collection<String[]> testsFolderFinder(){
         File folder = new File("tests");
@@ -64,6 +70,9 @@ public class TestsFolderTests {
         return output;
     }
 
+    /**
+     * Test runner for JUnit.
+     */
     @Test
     public void runTest(){
         // load up our readers
