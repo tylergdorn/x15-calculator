@@ -64,7 +64,6 @@ public class TestsFolderTests {
 
                     }
                 }
-//                runTest(inputFiles[0].getAbsolutePath(), inputFiles[1].getAbsolutePath());
                 output.add(new File[]{inputFiles[0], inputFiles[1]});
             }
         }
