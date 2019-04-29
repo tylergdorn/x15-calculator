@@ -16,6 +16,7 @@ class TestReader {
     }
 
     /**
+     * read reads the file specified in the constructor and returns it as a List of Strings
      * @return A list of Strings representing the lines in a the testfile the object was initialized with.
      */
     List<String> read(){

@@ -129,7 +129,7 @@ class Parser{
 
 
     /**
-     * Checks if a string is a value as defined by our regex (no trailing 0's)
+     * Checks if a string is a value as defined by our regex (no leading 0's)
      * @param value a string which may contain a value
      * @return true
      */
