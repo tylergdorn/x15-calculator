@@ -12,29 +12,29 @@ import java.util.regex.Pattern;
 
 @RunWith(Parameterized.class)
 public class TestsFolderTests {
-    private String expectedPath;
-    private String inputPath;
+    private File expected;
+    private File input;
 
     /**
      * Constructor for the test
-     * @param inputPath the path to the input file
-     * @param expectedPath the path to the file which contains the expected output
+     * @param input the input file
+     * @param expected the file which contains the expected output
      */
-    public TestsFolderTests(String inputPath, String expectedPath){
-        this.expectedPath = expectedPath;
-        this.inputPath = inputPath;
+    public TestsFolderTests(File input, File expected){
+        this.expected = expected;
+        this.input = input;
     }
 
     /**
      * testsFolderFinder finds all folders and puts their path into a string array, which JUnit then passes to our test runner
-     * @return a list of arrays of strings, representing the inputs for our tests
+     * @return a list of arrays of Files, representing the inputs for our tests
      */
     @Parameterized.Parameters(name = "{index}: runTest({0})={1}")
-    public static Collection<String[]> testsFolderFinder(){
+    public static Collection<File[]> testsFolderFinder(){
         File folder = new File("tests");
         System.out.println(folder.getAbsolutePath());
         File[] listOfTestFolders = folder.listFiles();
-        Collection<String[]> output = new ArrayList<>();
+        Collection<File[]> output = new ArrayList<>();
         // this matches a filename with the necessary file endings
         Pattern filename = Pattern.compile("test\\.(txt|out|err)");
         // make sure that the tests folder is there and there are folders in it
@@ -64,7 +64,7 @@ public class TestsFolderTests {
                     }
                 }
 //                runTest(inputFiles[0].getAbsolutePath(), inputFiles[1].getAbsolutePath());
-                output.add(new String[]{inputFiles[0].getAbsolutePath(), inputFiles[1].getAbsolutePath()});
+                output.add(new File[]{inputFiles[0], inputFiles[1]});
             }
         }
         return output;
@@ -76,8 +76,8 @@ public class TestsFolderTests {
     @Test
     public void runTest(){
         // load up our readers
-        TestReader input = new TestReader(inputPath);
-        TestReader result = new TestReader(expectedPath);
+        TestReader input = new TestReader(this.input);
+        TestReader result = new TestReader(this.expected);
         // prepare our calculator parser
         Parser p = new Parser(input.read());
         List<String> output = new ArrayList<>();

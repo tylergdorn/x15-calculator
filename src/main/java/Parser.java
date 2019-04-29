@@ -1,4 +1,9 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -30,14 +35,7 @@ class Parser{
         for(List<String> line: symbols) {
             // the case where the assignment is "atomic", i.e. a = 1;
             if (line.size() == 2) {
-                // the case where the thing that it equals is a number
-                if (isValue(line.get(1))) {
-                    valueMap.put(line.get(0), Integer.parseInt(line.get(1)));
-                }
-                // otherwise it's another variable
-                else {
-                    valueMap.put(line.get(0), processVariable(line.get(1)));
-                }
+                valueMap.put(line.get(0), processVariable(line.get(1)));
             }
             // the case where the assignment is more complex
             else {
@@ -46,6 +44,7 @@ class Parser{
                 line.remove(0);
 
                 Stack<Integer> lastVariable = new Stack<>();
+
                 while (!line.isEmpty()) {
 
                     int[] values = {0, 0};
@@ -63,7 +62,7 @@ class Parser{
 
                     String operator = line.get(0);
                     values[1] = processVariable(line.get(1));
-                    // does this do what I want?
+                    // remove what we process
                     line.remove(0);
                     line.remove(0);
 
@@ -82,9 +81,9 @@ class Parser{
     }
 
     /**
-     * Takes in a variable and returns an int of it's value (either from the dictionary or by parsing the int)
+     * Takes in a variable and returns an int of its value (either from the dictionary or by parsing the int)
      * @param variable is the string representation of a variable to be parsed.
-     * @return int that the variable is or it's representation in the dictionary
+     * @return int that the variable is or its representation in the dictionary
      * @throws MalformedError when the string given cannot be parsed
      */
     private int processVariable(String variable) throws MalformedError {
@@ -114,11 +113,9 @@ class Parser{
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()){
            parsed.add(matcher.group(1));
+           // split up the expression by the spaces
            String[] tempArray = matcher.group(2).split(" ", 0);
            Collections.addAll(parsed, tempArray);
-//           for(String token : tempArray){
-//               parsed.add(token);
-//           }
         }
         else{
             // line numbers don't start at 0
@@ -157,6 +154,7 @@ class Parser{
                 // java so we don"t need to worry about this returning decimals
                 return valueOne / valueTwo;
             case "^":
+                // casting as an int may cause some issues later, but probably not in the scope of the calculator
                 return (int) Math.pow(valueOne, valueTwo);
             default:
                 throw new MalformedError("No such operator: " + operator);
