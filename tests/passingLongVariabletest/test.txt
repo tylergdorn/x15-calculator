@@ -1,0 +1,5 @@
+thesaurus = 100;
+avocado = thesaurus * 2;
+aaskdfjhaskdfjhadslkfjhasdf = avocado * 2;
+a = aaskdfjhaskdfjhadslkfjhasdf;
+result = a * 2;

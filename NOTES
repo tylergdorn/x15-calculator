@@ -18,5 +18,5 @@ These are my notes and assumptions for the project:
             b = result + 1;
             result = b * 2;
     where the result would be 8, which would be printed at the end of reading the whole script.
-
+9. the expression can contain extra spaces, but style dictates that you shouldn't have extra spaces
 

@@ -108,14 +108,20 @@ class Parser{
      */
     private List<String> verify(String line, int lineNumber) throws MalformedError{
         List<String> parsed = new ArrayList<>();
-        String regex = "^(result|[a-zA-Z]) = (.*);$";
+        String regex = "^(result|[a-zA-Z]+) += +(.*);$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(line);
         if (matcher.find()){
            parsed.add(matcher.group(1));
            // split up the expression by the spaces
            String[] tempArray = matcher.group(2).split(" ", 0);
-           Collections.addAll(parsed, tempArray);
+           // if i want to check for "" this doesn't work
+//           Collections.addAll(parsed, tempArray);
+           for(String symbol : tempArray) {
+               if(!symbol.equals("")) {
+                   parsed.add(symbol);
+               }
+           }
         }
         else{
             // line numbers don't start at 0

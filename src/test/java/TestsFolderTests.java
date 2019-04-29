@@ -27,6 +27,7 @@ public class TestsFolderTests {
 
     /**
      * testsFolderFinder finds all folders and puts their path into a string array, which JUnit then passes to our test runner
+     * It's worth noting that this makes the bold assumption that all folders have the tests properly in them. it will fail on empty folders.
      * @return a list of arrays of Files, representing the inputs for our tests
      */
     @Parameterized.Parameters(name = "{index}: runTest({0})={1}")
