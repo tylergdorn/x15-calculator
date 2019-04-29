@@ -23,7 +23,7 @@ public class TestsFolderTests {
         this.inputPath = inputPath;
     }
 
-    @Parameterized.Parameters(name = "{index}: fib({0})={1}")
+    @Parameterized.Parameters(name = "{index}: runTest({0})={1}")
     public static Collection<String[]> testsFolderFinder(){
         File folder = new File("tests");
         System.out.println(folder.getAbsolutePath());
