@@ -1,8 +1,8 @@
-#x15-Calculator
+# x15-Calculator
 
 x15-Calculator is a coding test I did which takes in a simple "program" and returns the calculated value.
 
-##Example
+## Example
 given the script
 ```
 a = 5;
@@ -15,7 +15,7 @@ It will print out the result, 441.
 
 It always prints out the value of result at the end of execution.
 
-##Use
+## Use
 
 The calculator was built on JDK 11, and Gradle 5.14
 you can use `gradle build` to build the program and `gradle test` to run all tests.
